@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package discount;
+option go_package = "/protocol";
+
+message DiscountRequest {
+  string userId = 1;
+  string productId = 2;
+}
+
+message DiscountResponse {
+  float percentage = 1;
+  int64 valueInCents = 2;
+}
+
+service DiscountService{
+  // Unary
+  rpc Discount(DiscountRequest) returns (DiscountResponse){};
+}
