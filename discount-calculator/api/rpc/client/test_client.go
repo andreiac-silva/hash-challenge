@@ -20,8 +20,8 @@ func main() {
 
 func unary(cc protocol2.DiscountServiceClient) {
 	req := &protocol2.DiscountRequest{
-		UserId:    "d25095bc-b2cc-11eb-b051-f34c68e013d3",
-		ProductId: "d84c1d10-b2cc-11eb-8b64-a7ff55ffa104",
+		UserId:    "609c762cbd24751085f35800",
+		ProductId: "609c74c0bd24751085f357c9",
 	}
 
 	res, err := cc.Discount(context.Background(), req)

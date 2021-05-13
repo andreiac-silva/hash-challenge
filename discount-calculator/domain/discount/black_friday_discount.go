@@ -21,5 +21,5 @@ func (b *BlackFridayDiscount) GetDiscount() Discount {
 
 func (b *BlackFridayDiscount) isBlackFriday() bool {
 	_, month, day := time.Now().Date()
-	return month == 11 && day == 25
+	return month == time.November && day == 25
 }
