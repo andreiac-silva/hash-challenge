@@ -6,6 +6,7 @@ import (
 	"discount-calculator/internal/logger"
 	"discount-calculator/usecase/product"
 	"discount-calculator/usecase/user"
+	"time"
 )
 
 func NewService(ucProduct product.UseCase, ucUser user.UseCase) *Service {
@@ -20,7 +21,7 @@ type Service struct {
 	ucUser    user.UseCase
 }
 
-func (uc Service) CalculateDiscount(userId, productId string) (*discount.Discount, error) {
+func (uc Service) CalculateDiscount(currentDate time.Time, userId, productId string) (*discount.Discount, error) {
 	product, err := uc.ucProduct.GetProduct(productId)
 	if err != nil {
 		logger.Logger.Errorf("Something went wrong while looking for product with id %s", productId)
@@ -36,8 +37,8 @@ func (uc Service) CalculateDiscount(userId, productId string) (*discount.Discoun
 		}
 	}
 
-	bthDiscount := discount.BirthdayDiscount{User: user, PriceInCents: product.PriceInCents}
-	bfDiscount := discount.BlackFridayDiscount{PriceInCents: product.PriceInCents}
+	bthDiscount := discount.BirthdayDiscount{CurrentDate: currentDate, User: user, PriceInCents: product.PriceInCents}
+	bfDiscount := discount.BlackFridayDiscount{CurrentDate: currentDate, PriceInCents: product.PriceInCents}
 	return uc.applyAndSelectGreater(&bthDiscount, &bfDiscount), nil
 }
 

@@ -3,6 +3,7 @@ module discount-calculator
 go 1.16
 
 require (
+	github.com/stretchr/testify v1.7.0
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/subcommands v1.2.0 // indirect
 	github.com/google/wire v0.5.0

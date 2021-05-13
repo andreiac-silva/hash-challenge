@@ -2,10 +2,15 @@ package discount
 
 import "time"
 
-const blackFridayPercentageDiscount = 10
+const (
+	blackFridayPercentageDiscount = 10
+	blackFridayDay                = 25
+	blackFridayMonth              = time.November
+)
 
 type BlackFridayDiscount struct {
 	PriceInCents int64
+	CurrentDate  time.Time
 	discount     Discount
 }
 
@@ -20,6 +25,6 @@ func (b *BlackFridayDiscount) GetDiscount() Discount {
 }
 
 func (b *BlackFridayDiscount) isBlackFriday() bool {
-	_, month, day := time.Now().Date()
-	return month == time.November && day == 25
+	_, currentMonth, currentDay := b.CurrentDate.Date()
+	return blackFridayMonth == currentMonth && blackFridayDay == currentDay
 }
