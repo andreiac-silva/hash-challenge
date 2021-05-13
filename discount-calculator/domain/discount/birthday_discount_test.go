@@ -7,8 +7,9 @@ import (
 	"time"
 )
 
+var today = time.Now()
+
 func TestApplyWhenIsUserBirthday(t *testing.T) {
-	today := time.Now()
 	user := domain.User{
 		DateOfBirth: today,
 	}
@@ -26,7 +27,6 @@ func TestApplyWhenIsUserBirthday(t *testing.T) {
 }
 
 func TestApplyWhenIsNotUserBirthday(t *testing.T) {
-	today := time.Now()
 	user := domain.User{
 		DateOfBirth: time.Now().AddDate(0, 0, 1),
 	}
