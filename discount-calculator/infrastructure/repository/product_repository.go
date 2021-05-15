@@ -26,9 +26,8 @@ type ProductRepository struct {
 }
 
 func (db ProductRepository) FindOne(id string) (product domain.Product, err error) {
-	objId, err := primitive.ObjectIDFromHex(id)
+	objId, err := db.toObjectID(id)
 	if err != nil {
-		logger.Logger.Errorw("error converting product id to ObjectID", "error", err.Error())
 		return
 	}
 
@@ -38,7 +37,7 @@ func (db ProductRepository) FindOne(id string) (product domain.Product, err erro
 	if result.Err() != nil {
 		switch result.Err() {
 		case mongo.ErrNoDocuments:
-			err = &errors.EntityNotFound{Err: result.Err()}
+			err = &errors.EntityNotFound{Err: result.Err(), Message: "Product not found"}
 			logger.Logger.Errorw("Product not found", "id", id, "error", err.Error())
 			return
 		default:
@@ -51,7 +50,22 @@ func (db ProductRepository) FindOne(id string) (product domain.Product, err erro
 	err = result.Decode(&product)
 	if err != nil {
 		logger.Logger.Errorw("Error decoding domain", "error", err.Error())
-		return domain.Product{}, err
+		return
 	}
 	return
+}
+
+func (db ProductRepository) toObjectID(id string) (objID primitive.ObjectID, err error) {
+	if id == "" {
+		logger.Logger.Errorw("product id is required but it was not informed")
+		err = &errors.MissingAttribute{Message: "Missing Product Id"}
+		return
+	}
+	objId, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		logger.Logger.Errorw("error converting product id to ObjectID", "error", err.Error())
+		err = &errors.InvalidAttribute{Err: err, Message: "Invalid Product Id"}
+		return
+	}
+	return objId, nil
 }

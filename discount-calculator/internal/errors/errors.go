@@ -23,12 +23,27 @@ func (e *DatabaseConnectionError) Error() string {
 }
 
 type EntityNotFound struct {
-	Err error
+	Err     error
+	Message string
 }
 
 func (e *EntityNotFound) Error() string {
-	if e.Err != nil {
-		return e.Err.Error()
-	}
-	return "Entity not found. Check the id."
+	return e.Message
+}
+
+type InvalidAttribute struct {
+	Err     error
+	Message string
+}
+
+func (e *InvalidAttribute) Error() string {
+	return e.Message
+}
+
+type MissingAttribute struct {
+	Message string
+}
+
+func (e *MissingAttribute) Error() string {
+	return e.Message
 }

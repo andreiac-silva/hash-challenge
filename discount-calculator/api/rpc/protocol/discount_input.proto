@@ -14,6 +14,7 @@ message DiscountResponse {
 }
 
 service DiscountService{
-  // Unary
+  // Error handling
+  // This RPC will return errors if the product is not found in the database or if product id or user id are invalid
   rpc Discount(DiscountRequest) returns (DiscountResponse){};
 }

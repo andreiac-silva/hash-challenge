@@ -28,7 +28,8 @@ type UserRepository struct {
 func (db UserRepository) FindOne(id string) (user domain.User, err error) {
 	objId, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
-		logger.Logger.Errorw("error converting product id to ObjectID", "error", err.Error())
+		err = &errors.InvalidAttribute{Err: err, Message: "Invalid User Id"}
+		logger.Logger.Errorw("error converting user id to ObjectID", "error", err.Error())
 		return
 	}
 
@@ -38,7 +39,7 @@ func (db UserRepository) FindOne(id string) (user domain.User, err error) {
 	if result.Err() != nil {
 		switch result.Err() {
 		case mongo.ErrNoDocuments:
-			err = &errors.EntityNotFound{Err: result.Err()}
+			err = &errors.EntityNotFound{Err: result.Err(), Message: "User not found"}
 			logger.Logger.Errorw("User not found", "id", id, "error", err.Error())
 			return
 		default:

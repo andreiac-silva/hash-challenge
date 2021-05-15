@@ -27,7 +27,6 @@ func (uc Service) CalculateDiscount(currentDate time.Time, userId, productId str
 		logger.Logger.Errorf("Something went wrong while looking for product with id %s", productId)
 		return nil, err
 	}
-
 	var user domain.User
 	if userId != "" {
 		user, err = uc.ucUser.GetUser(userId)
