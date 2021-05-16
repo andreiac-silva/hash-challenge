@@ -46,6 +46,10 @@ public class ProductRepository {
 
     private Product fromDocument(final Document document) {
         var product = new Product();
+
+        System.out.println("Object id= "+ document.getObjectId("_id"));
+        System.out.println("Object id= "+ document.getObjectId("_id").toString());
+
         product.setId(document.getObjectId("_id").toString());
         product.setPriceInCents(document.getInteger("price_in_cents"));
         product.setTitle(document.getString("title"));

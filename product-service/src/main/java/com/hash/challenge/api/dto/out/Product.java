@@ -1,5 +1,7 @@
 package com.hash.challenge.api.dto.out;
 
+import org.graalvm.collections.Pair;
+
 public final class Product {
 
     private final String id;
@@ -16,14 +18,14 @@ public final class Product {
         this.discount = discount;
     }
 
-    public static Product fromDomain(com.hash.challenge.domain.Product product) {
-        return new Product
-                (
+    public static Product fromDomain(com.hash.challenge.domain.Product product, Pair<Float, Long> discountValues) {
+        return new Product(
                 product.getId(),
                 product.getTitle(),
                 product.getDescription(),
                 product.getPriceInCents(),
-                null);
+                Discount.fromValues(discountValues)
+        );
     }
 
     public String getId() {
