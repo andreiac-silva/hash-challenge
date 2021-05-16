@@ -20,7 +20,7 @@ public final class Product {
 
     public static Product fromDomain(com.hash.challenge.domain.Product product, Pair<Float, Long> discountValues) {
         return new Product(
-                product.getId(),
+                product.getIdAsString(),
                 product.getTitle(),
                 product.getDescription(),
                 product.getPriceInCents(),

@@ -33,7 +33,7 @@ public class ProductResource {
         var products = service.list()
                 .stream()
                 .map(p -> {
-                    var discount = discountClient.calculateDiscount(userId.orElse(""), p.getId());
+                    var discount = discountClient.calculateDiscount(userId.orElse(""), p.getIdAsString());
                     return Product.fromDomain(p, discount);
                 })
                 .collect(toList());

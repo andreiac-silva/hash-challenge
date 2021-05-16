@@ -1,0 +1,33 @@
+version: '3.6'
+
+services:
+  mongo0:
+    image: mongo
+    hostname: mongo0
+    container_name: mongo0
+    restart: always
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
+    ports:
+      - 27017:27017
+    expose:
+      - 27017
+  mongo1:
+    image: mongo
+    hostname: mongo1
+    container_name: mongo1
+    restart: always
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
+    ports:
+      - 27018:27017
+    expose:
+      - 27017
+  mongo2:
+    image: mongo
+    hostname: mongo2
+    container_name: mongo2
+    restart: always
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]
+    ports:
+      - 27019:27017
+    expose:
+      - 27017

@@ -1,10 +1,21 @@
 package com.hash.challenge.domain;
 
-public class Product {
+import io.quarkus.mongodb.panache.MongoEntity;
+import io.quarkus.mongodb.panache.PanacheMongoEntity;
+import org.bson.codecs.pojo.annotations.BsonIgnore;
+import org.bson.codecs.pojo.annotations.BsonProperty;
+import org.bson.types.ObjectId;
 
-    private String id;
+@MongoEntity(database = "store", collection = "products")
+public class Product extends PanacheMongoEntity {
+
+    @BsonProperty("title")
     private String title;
+
+    @BsonProperty("description")
     private String description;
+
+    @BsonProperty("price_in_cents")
     private Integer priceInCents;
 
     public Product() {
@@ -16,11 +27,16 @@ public class Product {
         this.priceInCents = priceInCents;
     }
 
-    public String getId() {
+    @BsonIgnore
+    public String getIdAsString() {
+        return id.toString();
+    }
+
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 

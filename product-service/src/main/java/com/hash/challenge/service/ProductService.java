@@ -14,10 +14,10 @@ public class ProductService {
     ProductRepository repository;
 
     public List<Product> list() {
-        return repository.findAll();
+        return repository.list();
     }
 
     public void add(final Product product) {
-        repository.save(product);
+        repository.add(product);
     }
 }

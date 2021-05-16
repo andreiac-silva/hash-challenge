@@ -6,13 +6,16 @@ import javax.validation.constraints.Positive;
 public final class Product {
 
     @NotBlank
-    private final String title;
+    private String title;
 
     @NotBlank
-    private final String description;
+    private String description;
 
     @Positive
-    private final Integer priceInCents;
+    private Integer priceInCents;
+
+    public Product() {
+    }
 
     public Product(String title, String description, Integer priceInCents) {
         this.title = title;
@@ -25,5 +28,29 @@ public final class Product {
                 title,
                 description,
                 priceInCents);
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Integer getPriceInCents() {
+        return priceInCents;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPriceInCents(Integer priceInCents) {
+        this.priceInCents = priceInCents;
     }
 }
