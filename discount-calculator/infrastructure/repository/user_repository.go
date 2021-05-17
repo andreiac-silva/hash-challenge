@@ -3,8 +3,8 @@ package repository
 import (
 	"context"
 	"discount-calculator/domain"
-	"discount-calculator/internal/errors"
-	"discount-calculator/internal/logger"
+	"discount-calculator/pkg/errors"
+	"discount-calculator/pkg/logger"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -29,7 +29,7 @@ func (db UserRepository) FindOne(id string) (user domain.User, err error) {
 	objId, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
 		err = &errors.InvalidAttribute{Err: err, Message: "Invalid User Id"}
-		logger.Logger.Errorw("error converting user id to ObjectID", "error", err.Error())
+		logger.Logger.Errorw("Error converting user id to ObjectID", "error", err.Error())
 		return
 	}
 

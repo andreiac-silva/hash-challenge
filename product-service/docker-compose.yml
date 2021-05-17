@@ -1,25 +1,46 @@
 version: "3.9"
 
 services:
+  mongo:
+    image: mongo
+    container_name: mongo
+    healthcheck:
+      test: echo 'db.stats().ok' | mongo localhost:27017 --quiet
+      interval: 5s
+      timeout: 5s
+      start_period: 12s
+    ports:
+      - 27017:27017
+    networks:
+      - the_net
+
+  product-service:
+    image: andreiacsilva/product-service:latest
+    container_name: product-service
+    environment:
+      - QUARKUS_MONGODB_CONNECTION_STRING=mongodb://mongo:27017
+      - QUARKUS_GRPC_CLIENTS_DISCOUNT_HOST=discount-calculator
+    depends_on:
+      mongo:
+        condition: service_healthy
+    ports:
+      - 8080:8080
+    networks:
+      - the_net
+
   discount-calculator:
     image: andreiacsilva/discount-calculator:latest
+    container_name: discount-calculator
+    environment:
+      - MONGODB_CONNECTION_URL=mongodb://mongo:27017
+    depends_on:
+      mongo:
+        condition: service_healthy
     ports:
       - 8000:8000
       - 50051:50051
-    expose:
-      - 50051
-    depends_on:
-      - mongo
-  product-service:
-    image: andreiacsilva/product-service:latest
-    expose:
-      - 8080
-    depends_on:
-      - mongo
-      - discount-calculator
-  mongo:
-    image: mongo
-    ports:
-      - 27017:27017
-    expose:
-      - 27017
+    networks:
+      - the_net
+
+networks:
+  the_net:

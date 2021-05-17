@@ -21,7 +21,7 @@ func SetupLogger() {
 			defaultLog.Fatalf("Can't initialize logger: %v", err)
 		}
 		Logger = log.Sugar()
-		Logger.Debug("Created new logger")
+		Logger.Debug("Logger setup has done")
 	})
 }
 

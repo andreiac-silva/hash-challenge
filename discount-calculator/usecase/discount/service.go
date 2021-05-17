@@ -3,7 +3,7 @@ package discount
 import (
 	"discount-calculator/domain"
 	"discount-calculator/domain/discount"
-	"discount-calculator/internal/logger"
+	"discount-calculator/pkg/logger"
 	"discount-calculator/usecase/product"
 	"discount-calculator/usecase/user"
 	"time"

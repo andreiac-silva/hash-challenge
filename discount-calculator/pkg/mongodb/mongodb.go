@@ -1,7 +1,7 @@
 package mongodb
 
 import (
-	"discount-calculator/internal/logger"
+	"discount-calculator/pkg/logger"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"golang.org/x/net/context"

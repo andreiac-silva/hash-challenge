@@ -8,8 +8,8 @@ package main
 import (
 	"discount-calculator/api/rpc/server"
 	"discount-calculator/infrastructure/repository"
-	"discount-calculator/internal/mongodb"
 	"discount-calculator/pkg"
+	"discount-calculator/pkg/mongodb"
 	"discount-calculator/usecase/discount"
 	"discount-calculator/usecase/product"
 	"discount-calculator/usecase/user"

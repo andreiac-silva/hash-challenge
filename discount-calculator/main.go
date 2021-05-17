@@ -1,7 +1,7 @@
 package main
 
 import (
-	"discount-calculator/internal/logger"
+	"discount-calculator/pkg/logger"
 	"github.com/joho/godotenv"
 )
 

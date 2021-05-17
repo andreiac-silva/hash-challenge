@@ -1,7 +1,9 @@
 package com.hash.challenge.api.dto.out;
 
+import io.quarkus.runtime.annotations.RegisterForReflection;
 import org.graalvm.collections.Pair;
 
+@RegisterForReflection
 public class Discount {
 
     private final float percentage;

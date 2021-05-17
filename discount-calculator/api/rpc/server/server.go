@@ -3,7 +3,8 @@ package api
 import (
 	"context"
 	pb "discount-calculator/api/rpc/protocol"
-	"discount-calculator/internal/errors"
+	"discount-calculator/pkg/errors"
+	"discount-calculator/pkg/logger"
 	"discount-calculator/usecase/discount"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
@@ -26,6 +27,8 @@ type Server struct {
 }
 
 func (s *Server) Discount(cxt context.Context, req *pb.DiscountRequest) (*pb.DiscountResponse, error) {
+	logger.Logger.Debugf("Discount is going to be calcuted for Product Id: "+req.GetProductId()+" and User Id: ", req.UserId)
+
 	d, err := s.ucDiscount.CalculateDiscount(time.Now(), req.UserId, req.ProductId)
 
 	if err != nil {

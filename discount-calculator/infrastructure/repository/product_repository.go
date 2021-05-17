@@ -3,8 +3,8 @@ package repository
 import (
 	"context"
 	"discount-calculator/domain"
-	"discount-calculator/internal/errors"
-	"discount-calculator/internal/logger"
+	"discount-calculator/pkg/errors"
+	"discount-calculator/pkg/logger"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -57,13 +57,13 @@ func (db ProductRepository) FindOne(id string) (product domain.Product, err erro
 
 func (db ProductRepository) toObjectID(id string) (objID primitive.ObjectID, err error) {
 	if id == "" {
-		logger.Logger.Errorw("product id is required but it was not informed")
+		logger.Logger.Errorw("Product id is required but it was not informed")
 		err = &errors.MissingAttribute{Message: "Missing Product Id"}
 		return
 	}
 	objId, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
-		logger.Logger.Errorw("error converting product id to ObjectID", "error", err.Error())
+		logger.Logger.Errorw("Error converting product id to ObjectID", "error", err.Error())
 		err = &errors.InvalidAttribute{Err: err, Message: "Invalid Product Id"}
 		return
 	}
