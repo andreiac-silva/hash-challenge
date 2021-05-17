@@ -28,8 +28,4 @@ public class ProductApiHelper {
                 })
                 .collect(toList());
     }
-
-    public void add(com.hash.challenge.api.dto.in.Product product) {
-        productService.add(product.toDomain());
-    }
 }

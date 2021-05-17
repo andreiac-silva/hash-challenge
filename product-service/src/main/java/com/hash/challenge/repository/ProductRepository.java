@@ -12,8 +12,4 @@ public class ProductRepository implements PanacheMongoRepository<Product> {
     public List<Product> list() {
         return listAll();
     }
-
-    public void add(Product product) {
-        persist(product);
-    }
 }

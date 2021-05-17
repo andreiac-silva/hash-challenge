@@ -16,8 +16,4 @@ public class ProductService {
     public List<Product> list() {
         return repository.list();
     }
-
-    public void add(final Product product) {
-        repository.add(product);
-    }
 }
