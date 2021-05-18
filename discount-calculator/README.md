@@ -1,4 +1,4 @@
-## Discount Calculator
+## Discount Calculator - Golang
 
 This project is part of the solution proposed to reach the Hash challenge. Discount-calculator includes a unary rpc api
 which is responsible to calculate discounts based on user id (optional) and product id.
