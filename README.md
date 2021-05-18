@@ -16,7 +16,6 @@ The projects' images were pushed on docker-hub, therefore, it's possible to run 
 |--------------|-------------|-----------------|
 | GET          |/product     | X-USER-ID (opt) |
 
-<br/>
 Some users' id can be retrieved accessing mongodb:
 <br/>
 
