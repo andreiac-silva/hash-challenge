@@ -18,7 +18,7 @@ The projects' images were pushed on docker-hub, therefore, it's possible to run 
 
 <br/>
 Some users' id can be retrieved accessing mongodb:
-
+<br/>
 ```shell script
 $ docker exec -it mongo bash
 $ mongo
