@@ -1,4 +1,4 @@
-# product-service project
+# Product Service - Java and Quarkus
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
