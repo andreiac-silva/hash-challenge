@@ -4,7 +4,7 @@ To execute the complete solution by docker-compose, go back to [parent repositor
 
 ### Running the application in dev mode
 
-You can run your application in dev mode that enables live coding using:
+You can run the application in dev mode that enables live coding using:
 ```shell script
 ./mvnw compile quarkus:dev
 ```
