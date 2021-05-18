@@ -16,6 +16,7 @@ func init() {
 func main() {
 	logger.Logger.Info("Starting discount-calculator...")
 	app := SetupApplication()
+	logger.Logger.Info("Application setup has done!")
 	must(app.StartServer())
 }
 
