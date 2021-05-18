@@ -28,7 +28,7 @@ func TestApplyWhenIsUserBirthday(t *testing.T) {
 
 func TestApplyWhenIsNotUserBirthday(t *testing.T) {
 	user := domain.User{
-		DateOfBirth: time.Now().AddDate(0, 0, 1),
+		DateOfBirth: time.Now().AddDate(0, 0, 5),
 	}
 	bthDiscount := BirthdayDiscount{
 		PriceInCents: 1000,

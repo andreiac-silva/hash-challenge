@@ -13,25 +13,22 @@ import (
 )
 
 func NewServer(ucDiscount discount.UseCase, grpcSrv *grpc.Server) *Server {
-	srv := &Server{
-		ucDiscount: ucDiscount,
-		grpcSrv:    grpcSrv,
-	}
+	srv := &Server{ucDiscount: ucDiscount}
 	pb.RegisterDiscountServiceServer(grpcSrv, srv)
 	return srv
 }
 
 type Server struct {
 	ucDiscount discount.UseCase
-	grpcSrv    *grpc.Server
 }
 
 func (s *Server) Discount(cxt context.Context, req *pb.DiscountRequest) (*pb.DiscountResponse, error) {
-	logger.Logger.Debugf("Discount is going to be calcuted for Product Id: "+req.GetProductId()+" and User Id: ", req.UserId)
+	logger.Logger.Debugf("Discount is going to be calcuted for Product Id: %s and User Id: %s", req.GetProductId(), req.UserId)
 
 	d, err := s.ucDiscount.CalculateDiscount(time.Now(), req.UserId, req.ProductId)
 
 	if err != nil {
+		logger.Logger.Errorw("Something went wrong on discount calculating", "error", err)
 		return nil, s.handleErr(err)
 	}
 
