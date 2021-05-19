@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-var today = time.Now()
+var today = time.Now().In(time.UTC)
 
 func TestApplyWhenIsUserBirthday(t *testing.T) {
 	user := domain.User{
@@ -28,7 +28,7 @@ func TestApplyWhenIsUserBirthday(t *testing.T) {
 
 func TestApplyWhenIsNotUserBirthday(t *testing.T) {
 	user := domain.User{
-		DateOfBirth: time.Now().AddDate(0, 0, 5),
+		DateOfBirth: time.Now().In(time.UTC).AddDate(0, 0, 5),
 	}
 	bthDiscount := BirthdayDiscount{
 		PriceInCents: 1000,

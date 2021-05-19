@@ -25,7 +25,7 @@ type Server struct {
 func (s *Server) Discount(cxt context.Context, req *pb.DiscountRequest) (*pb.DiscountResponse, error) {
 	logger.Logger.Debugf("Discount is going to be calcuted for Product Id: %s and User Id: %s", req.GetProductId(), req.UserId)
 
-	d, err := s.ucDiscount.CalculateDiscount(time.Now(), req.UserId, req.ProductId)
+	d, err := s.ucDiscount.CalculateDiscount(time.Now().In(time.UTC), req.UserId, req.ProductId)
 
 	if err != nil {
 		logger.Logger.Errorw("Something went wrong on discount calculating", "error", err)
