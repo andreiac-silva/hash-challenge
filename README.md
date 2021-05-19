@@ -9,9 +9,11 @@ To execute the complete solution by docker-compose, run the following command li
 $ docker-compose up -d
 ```
 
-The projects' images were pushed on docker-hub. The users and products collections will be automatically loaded through `docker-compose` execution that refers  `mongo-init.js`.
+You can also run the application out of this repository. For this, download `docker-compose` and `mongo-init.js` files. **Important:** these two files must be on the same directory, because `mongo-init.js` is kind of mongo migration. The projects' images were pushed on docker-hub. After all, running the previous command you'll be able to reach the same result.
+
+
 <br/>
-Once the application is running, the API will be available on `localhost:8080`.
+Once the application is running, the product API will be available on `localhost:8080`.
 <br/>
 
 | METHOD       | RESOURCE    | HEADERS         |
