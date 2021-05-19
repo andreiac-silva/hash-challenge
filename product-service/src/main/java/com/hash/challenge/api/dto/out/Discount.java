@@ -1,8 +1,6 @@
 package com.hash.challenge.api.dto.out;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.graalvm.collections.Pair;
 
 @RegisterForReflection
@@ -28,21 +26,5 @@ public class Discount {
 
     public long getValueInCents() {
         return valueInCents;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Discount discount = (Discount) o;
-
-        return new EqualsBuilder().append(percentage, discount.percentage).append(valueInCents, discount.valueInCents).isEquals();
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder(17, 37).append(percentage).append(valueInCents).toHashCode();
     }
 }
