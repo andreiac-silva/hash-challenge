@@ -1,6 +1,8 @@
 package com.hash.challenge.api.dto.out;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.graalvm.collections.Pair;
 
 @RegisterForReflection
@@ -48,5 +50,21 @@ public final class Product {
 
     public Discount getDiscount() {
         return discount;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Product product = (Product) o;
+
+        return new EqualsBuilder().append(id, product.id).append(title, product.title).append(description, product.description).append(priceInCents, product.priceInCents).append(discount, product.discount).isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37).append(id).append(title).append(description).append(priceInCents).append(discount).toHashCode();
     }
 }

@@ -21,7 +21,8 @@ public class Product extends PanacheMongoEntity {
     public Product() {
     }
 
-    public Product(String title, String description, Integer priceInCents) {
+    public Product(ObjectId id, String title, String description, Integer priceInCents) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.priceInCents = priceInCents;

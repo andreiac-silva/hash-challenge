@@ -394,7 +394,7 @@ public final class DiscountInputProto {
       }
 
       // Construct using DiscountInputProto.DiscountRequest.newBuilder()
-      private Builder() {
+      public Builder() {
         maybeForceBuilderInitialization();
       }
 
