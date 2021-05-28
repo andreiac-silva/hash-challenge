@@ -9,4 +9,4 @@ You can run the application in dev mode that enables live coding using:
 ./mvnw compile quarkus:dev
 ```
 
-The product service image pushed on docker hub, was generated using GraalVM.
+The product service image pushed on docker hub was generated in native mode.
